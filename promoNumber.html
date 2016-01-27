@@ -1,0 +1,33 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>	
+  </head>
+ 
+  <body>
+  <span class="ppc_integration">
+	   <span class="ppc_number"></span>
+	</span>
+	<script src="//js8.invoca.net/8/publisher_integration.js"></script>
+  <script type="text/javascript">	
+		var promoNumberDiv = document.getElementsByClassName('ppc_integration')[0];
+		var q = document.location.search.replace('?', '');
+		var qParams = q.split('&');
+		var pId, cId;
+		for(var i = 0; i < qParams.length; i++){
+			var items = qParams[i].split('=');
+			if(items[0] == 'pId'){
+				pId = items[1];
+			} else if(items[0] == 'cId'){
+				cId = items[1];
+			}
+		}
+		
+		var promoClass = ' ppc_id_' + pId + '_' + cId;
+		
+		promoNumberDiv.className +=  promoClass;
+		Invoca.affiliate_integration( );
+  </script>
+	
+  </body>
+</html>

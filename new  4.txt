@@ -1,0 +1,14 @@
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="//loolimedia.com/scripts/goojiCode.js"></script>
+<script>
+goojiCode.init({
+pageName: 'spxrsn',
+advertiserName: 'Astoria (85354)',
+publisherName: 'Spiroox (269749)',
+campaignName: 'Rosetta Stone: Hispanic (175653)',
+landingPage: 'SPX - Rosetta Stone (spxrsn)'
+});
+$(document).ready(function() {
+goojiCode.bindGAToClick('.gbClickForNumber', 'Button', 'Click', (new Date()).getTime().toString());
+});
+</script>

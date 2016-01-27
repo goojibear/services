@@ -1,0 +1,54 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Landing Page</title>
+	<script src="jquery-2.1.4.min.js"></script>
+	<script>
+	var lpQs = window.location.search;
+	var baseUrl, clickId, campaignId, publisherId, telNum, t;
+	if(lpQs.length > 1 && lpQs.indexOf('?') !== -1){		
+		baseUrl = lpQs.substring(1);
+		var queryParts = baseUrl.split('&');
+		for(var i = 0; i < queryParts.length; i++){
+			var items = queryParts[i].split('=');
+			switch(items[0]){
+				case 'clickid':
+					clickId = items[1];
+					break;
+				case 'cid':
+					campaignId = items[1];
+					break;
+				case 'pid':
+					publisherId = items[1];
+					break;
+				case 'tel':
+					telNum = items[1];
+					break;
+				case 't':
+					t = items[1];
+					break;
+			}
+		}
+	}
+	clickId;
+	
+	$.ajax({ 
+		  url: 'http://ec2-54-201-60-244.us-west-2.compute.amazonaws.com/directClickTracing', 
+		  type: 'POST', 
+		  data: JSON.stringify({
+			"clickId": clickId,
+			"campaignId": campaignId,
+			"publisherId": publisherId,
+			"utcTimestamp": Date.parse(new Date())
+		  }),
+		   contentType: "application/json; charset=utf-8",
+		   crossDomain: true,
+		   dataType: "json"
+		});
+		document.location =  "https://goojibear.ringrevenue.com/c/1087/" + campaignId + "-" + publisherId + "-?us=http%3A%2F%2Foffers.loolimedia.com%2Fpub%2Fply%2Finv%2F&t=" + t + "&mobile=1&clickid=" + clickId;	
+	</script>
+  </head> 
+  <body>
+  </body>
+</html>
